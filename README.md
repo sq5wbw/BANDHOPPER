@@ -85,7 +85,7 @@ Enable **Rigctl Server** in SDR++:
 
 | Setting | Value |
 |---------|-------|
-| Rig | `AirspySDR#/predict` *(or your SDR device)* |
+| Rig | `AirspySDR#/predict` |
 | CAT Control | `127.0.0.1` port `4533` |
 
 ---
