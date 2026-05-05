@@ -19,7 +19,7 @@ The application acts as a CAT proxy between WSJT-X and SDR++, automatically swit
 - Python 3
 - [SDR++](https://www.sdrpp.org)
 - [WSJT-X](https://wsjt.sourceforge.io)
-- tmux — `sudo apt install tmux`
+- tmux — `sudo apt install tmux` *(recommended for background operation)*
 
 ---
 
@@ -29,10 +29,41 @@ The application acts as a CAT proxy between WSJT-X and SDR++, automatically swit
 python3 bandhopper.py
 ```
 
-BANDHOPPER automatically launches inside a tmux session. To reconnect after closing SSH:
+---
 
+## Running in Background with tmux
+
+tmux allows BANDHOPPER to keep running after you close your SSH session.
+
+**First launch:**
+```bash
+tmux new -s bhop
+python3 bandhopper.py
+```
+Press `Ctrl+B`, then `D` to detach — BANDHOPPER keeps running in the background.
+
+**Reconnect from SSH at any time:**
 ```bash
 tmux attach -t bhop
+```
+
+**Check if BANDHOPPER is running:**
+```bash
+tmux ls
+```
+
+**Stop BANDHOPPER:**
+```bash
+tmux kill-session -t bhop
+```
+
+**Auto-start on Raspberry Pi boot:**
+```bash
+crontab -e
+```
+Add this line:
+```
+@reboot tmux new-session -d -s bhop 'python3 /home/pi/bandhopper.py'
 ```
 
 ---
